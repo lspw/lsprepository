@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.lsp.crm.pojo"/>
+    </typeAliases>
+    <mappers>
+        <!--使用package要求
+        mapper文件名称和dao接口名必须完全一样，包括大小写，必须在同以目录
+        -->
+        <package name="com.lsp.crm.mapper"/>
+    </mappers>
+</configuration>
