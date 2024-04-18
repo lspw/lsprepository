@@ -5,6 +5,7 @@ import com.lsp.crm.settings.pojo.UserExample;
 import java.util.List;
 import java.util.Map;
 
+import com.lsp.crm.workbench.pojo.Activity;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -31,4 +32,9 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectUserByLoginActAndPwd(Map<String,Object> map);
+
+    //查询所有用户
+    List<User> selectAllUser();
+
+
 }

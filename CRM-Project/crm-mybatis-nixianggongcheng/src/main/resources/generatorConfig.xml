@@ -28,7 +28,7 @@
         </jdbcConnection>
 
         <!-- 生成pojo包名和位置 -->
-        <javaModelGenerator targetPackage="com.lsp.crm.settings.pojo"
+        <javaModelGenerator targetPackage="com.lsp.crm.workbench.pojo"
                             targetProject="D:/JavaWeb/CRM-Project/crm/src/main/java">
             <!--是否开启子包-->
             <property name="enableSubPackages" value="true"/>
@@ -37,7 +37,7 @@
         </javaModelGenerator>
 
         <!-- 生成SQL映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="com.lsp.crm.settings.mapper" targetProject="D:/JavaWeb/CRM-Project/crm/src/main/java">
+        <sqlMapGenerator targetPackage="com.lsp.crm.workbench.mapper" targetProject="D:/JavaWeb/CRM-Project/crm/src/main/java">
             <!--是否开启子包-->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
@@ -45,13 +45,40 @@
         <!-- 生成Mapper接口的包名和位置 -->
         <javaClientGenerator
                 type="xmlMapper"
-                targetPackage="com.lsp.crm.settings.mapper"
+                targetPackage="com.lsp.crm.workbench.mapper"
                 targetProject="D:/JavaWeb/CRM-Project/crm/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!-- 表名和对应的实体类名-->
-        <table tableName="tbl_user" domainObjectName="User"/>
-
+        <!-- 表名和对应的实体类名(tbl_user表)
+        <table tableName="tbl_user" domainObjectName="User"/>-->
+        <!-- 表名和对应的实体类名(tbl_activity表)
+        <table tableName="tbl_activity" domainObjectName="Activity"/>-->
+        <!-- 表名和对应的实体类名(tbl_activity_remark表)
+        <table tableName="tbl_activity_remark" domainObjectName="ActivityRemark"/>-->
+        <!--表名和对应的实体类名(tbl_dic_type表)
+        <table tableName="tbl_dic_value" domainObjectName="DicValue"/>-->
+        <!--表名和对应的实体类名(tbl_clue表)
+        <table tableName="tbl_clue" domainObjectName="Clue"/>-->
+        <!--表名和对应的实体类名(tbl_clue-remark表)
+        <table tableName="tbl_clue_remark" domainObjectName="ClueRemark"/>-->
+        <!--表名和对应的实体类名(tbl_clue-activity_relation表)
+        <table tableName="tbl_clue_activity_relation" domainObjectName="ClueActivityRelation"/>-->
+        <!--表名和对应的实体类名(tbl_customer表)
+        <table tableName="tbl_customer" domainObjectName="Customer"/>-->
+        <!--表名和对应的实体类名(tbl_contacts表)
+        <table tableName="tbl_contacts" domainObjectName="Contacts"/>-->
+        <!--表名和对应的实体类名(tbl_customer_remark表)
+        <table tableName="tbl_customer_remark" domainObjectName="CustomerRemark"/>-->
+        <!--表名和对应的实体类名(tbl_contacts_remark表)
+        <table tableName="tbl_contacts_remark" domainObjectName="ContactRemark"/>-->
+        <!--表名和对应的实体类名(tbl_contacts_activity_relation表)
+        <table tableName="tbl_contacts_activity_relation" domainObjectName="ContactActivityRelation"/>-->
+        <!--表名和对应的实体类名(tbl_tran表)
+        <table tableName="tbl_tran" domainObjectName="Tran"/>-->
+        <!--表名和对应的实体类名(tbl_tran_remark表)
+        <table tableName="tbl_tran_remark" domainObjectName="TranRemark"/>-->
+        <!--表名和对应的实体类名(tbl_tran_history表)-->
+        <table tableName="tbl_tran_history" domainObjectName="TranHistory"/>
     </context>
 </generatorConfiguration>

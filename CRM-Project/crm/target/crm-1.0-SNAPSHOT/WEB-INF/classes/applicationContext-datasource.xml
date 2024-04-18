@@ -26,7 +26,8 @@
     </bean>
     <!--Mapper扫描配置器，主要扫描Mapper接口，生成代理类-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.lsp.crm.settings.mapper"/>
+        <property name="basePackage" value="com.lsp.crm.settings.mapper,
+                                            com.lsp.crm.workbench.mapper  "/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
     <!--事务管理器-->

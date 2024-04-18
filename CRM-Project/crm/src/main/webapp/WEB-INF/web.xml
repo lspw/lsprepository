@@ -27,6 +27,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
+
+
     <!--注册springmvc的框架-->
     <servlet>
         <servlet-name>springmvc</servlet-name>
@@ -36,6 +39,17 @@
             <param-value>classpath:applicationContext-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <!--MultipartFile核心配置 上传文件使用，spring6.x删除了org.springframework.web.multipart.commons.CommonsMultipartResolver
+
+        -->
+        <multipart-config>
+            <!--         上传文件最大多少   -->
+            <max-file-size>10485760</max-file-size>
+            <!--         最大请求大小   -->
+            <max-request-size>10485760</max-request-size>
+            <!--         多大以上的文件可以上传   -->
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
 
     </servlet>
     <servlet-mapping>

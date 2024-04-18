@@ -6,4 +6,8 @@ public class Contants {
     public static final String RETURN_OBJECT_CODE_FAIL="0";//失败
     public static final String SESSION_USER="sessionUser";
 
+    //标记备注是否被修改过
+    public static final String REMARK_EDIT_NO="0";//没修改过
+    public static final String REMARK_EDIT_YES="1";//被修改过
+
 }
