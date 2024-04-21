@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsp.crm.workbench.mapper.TranMapper">
+  <resultMap id="BaseResultMap" type="com.lsp.crm.workbench.pojo.Tran">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="owner" jdbcType="CHAR" property="owner" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="expected_date" jdbcType="CHAR" property="expectedDate" />
+    <result column="customer_id" jdbcType="CHAR" property="customerId" />
+    <result column="stage" jdbcType="VARCHAR" property="stage" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="activity_id" jdbcType="CHAR" property="activityId" />
+    <result column="contacts_id" jdbcType="CHAR" property="contactsId" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="CHAR" property="createTime" />
+    <result column="edit_by" jdbcType="VARCHAR" property="editBy" />
+    <result column="edit_time" jdbcType="CHAR" property="editTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="contact_summary" jdbcType="VARCHAR" property="contactSummary" />
+    <result column="next_contact_time" jdbcType="CHAR" property="nextContactTime" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, owner, money, name, expected_date, customer_id, stage, type, source, activity_id, 
+    contacts_id, create_by, create_time, edit_by, edit_time, description, contact_summary, 
+    next_contact_time
+  </sql>
+  <select id="selectByExample" parameterType="com.lsp.crm.workbench.pojo.TranExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_tran
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_tran
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_tran
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsp.crm.workbench.pojo.TranExample">
+    delete from tbl_tran
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsp.crm.workbench.pojo.Tran">
+    insert into tbl_tran (id, owner, money, name, 
+      expected_date, customer_id, stage, 
+      type, source, activity_id, 
+      contacts_id, create_by, create_time, 
+      edit_by, edit_time, description, 
+      contact_summary, next_contact_time)
+    values (#{id,jdbcType=CHAR}, #{owner,jdbcType=CHAR}, #{money,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{expectedDate,jdbcType=CHAR}, #{customerId,jdbcType=CHAR}, #{stage,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{activityId,jdbcType=CHAR}, 
+      #{contactsId,jdbcType=CHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=CHAR}, 
+      #{editBy,jdbcType=VARCHAR}, #{editTime,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, 
+      #{contactSummary,jdbcType=VARCHAR}, #{nextContactTime,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsp.crm.workbench.pojo.Tran">
+    insert into tbl_tran
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="owner != null">
+        owner,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="expectedDate != null">
+        expected_date,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="stage != null">
+        stage,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="contactsId != null">
+        contacts_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="editBy != null">
+        edit_by,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="contactSummary != null">
+        contact_summary,
+      </if>
+      <if test="nextContactTime != null">
+        next_contact_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=CHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDate != null">
+        #{expectedDate,jdbcType=CHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=CHAR},
+      </if>
+      <if test="stage != null">
+        #{stage,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=CHAR},
+      </if>
+      <if test="contactsId != null">
+        #{contactsId,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="editBy != null">
+        #{editBy,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contactSummary != null">
+        #{contactSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="nextContactTime != null">
+        #{nextContactTime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsp.crm.workbench.pojo.TranExample" resultType="java.lang.Long">
+    select count(*) from tbl_tran
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_tran
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.owner != null">
+        owner = #{record.owner,jdbcType=CHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectedDate != null">
+        expected_date = #{record.expectedDate,jdbcType=CHAR},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=CHAR},
+      </if>
+      <if test="record.stage != null">
+        stage = #{record.stage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null">
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null">
+        activity_id = #{record.activityId,jdbcType=CHAR},
+      </if>
+      <if test="record.contactsId != null">
+        contacts_id = #{record.contactsId,jdbcType=CHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=CHAR},
+      </if>
+      <if test="record.editBy != null">
+        edit_by = #{record.editBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editTime != null">
+        edit_time = #{record.editTime,jdbcType=CHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactSummary != null">
+        contact_summary = #{record.contactSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextContactTime != null">
+        next_contact_time = #{record.nextContactTime,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_tran
+    set id = #{record.id,jdbcType=CHAR},
+      owner = #{record.owner,jdbcType=CHAR},
+      money = #{record.money,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      expected_date = #{record.expectedDate,jdbcType=CHAR},
+      customer_id = #{record.customerId,jdbcType=CHAR},
+      stage = #{record.stage,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=CHAR},
+      contacts_id = #{record.contactsId,jdbcType=CHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=CHAR},
+      edit_by = #{record.editBy,jdbcType=VARCHAR},
+      edit_time = #{record.editTime,jdbcType=CHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      contact_summary = #{record.contactSummary,jdbcType=VARCHAR},
+      next_contact_time = #{record.nextContactTime,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsp.crm.workbench.pojo.Tran">
+    update tbl_tran
+    <set>
+      <if test="owner != null">
+        owner = #{owner,jdbcType=CHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDate != null">
+        expected_date = #{expectedDate,jdbcType=CHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=CHAR},
+      </if>
+      <if test="stage != null">
+        stage = #{stage,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=CHAR},
+      </if>
+      <if test="contactsId != null">
+        contacts_id = #{contactsId,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="editBy != null">
+        edit_by = #{editBy,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        edit_time = #{editTime,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contactSummary != null">
+        contact_summary = #{contactSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="nextContactTime != null">
+        next_contact_time = #{nextContactTime,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsp.crm.workbench.pojo.Tran">
+    update tbl_tran
+    set owner = #{owner,jdbcType=CHAR},
+      money = #{money,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      expected_date = #{expectedDate,jdbcType=CHAR},
+      customer_id = #{customerId,jdbcType=CHAR},
+      stage = #{stage,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=CHAR},
+      contacts_id = #{contactsId,jdbcType=CHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=CHAR},
+      edit_by = #{editBy,jdbcType=VARCHAR},
+      edit_time = #{editTime,jdbcType=CHAR},
+      description = #{description,jdbcType=VARCHAR},
+      contact_summary = #{contactSummary,jdbcType=VARCHAR},
+      next_contact_time = #{nextContactTime,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <insert id="insertTran" parameterType="com.lsp.crm.workbench.pojo.Tran">
+   insert into  tbl_tran( id, owner, money, name, expected_date, customer_id, stage, type, source, activity_id,
+                           contacts_id, create_by, create_time, description, contact_summary,
+                           next_contact_time)
+    values(#{id},#{ owner},#{ money},#{ name},#{ expectedDate},#{ customerId},#{ stage},#{ type},#{ source},#{ activityId},
+           #{contactsId},#{ createBy}, #{ createTime},#{description},#{ contactSummary},
+           #{nextContactTime})
+
+
+  </insert>
+
+  <select id="selectTranForDetailById" parameterType="string" resultMap="BaseResultMap">
+    select t.id,u1.name as owner,t.money,t.name,t.expected_date,c.name as customer_id,dv1.value as stage,dv1.order_no,dv2.value as type,
+           dv3.value as source,a.name as activity_id,co.fullname as contacts_id,u2.name as create_by,t.create_time, u3.name as edit_by,
+           t.edit_time,t.description,t.contact_summary,t.next_contact_time
+    from tbl_tran t
+        join tbl_user u1 on t.owner=u1.id
+        join tbl_customer c on t.customer_id=c.id
+        join tbl_dic_value dv1 on t.stage=dv1.id
+        left join tbl_dic_value dv2 on t.type=dv2.id
+        left join tbl_dic_value dv3 on t.source=dv3.id
+        left join tbl_activity a on t.activity_id=a.id
+        left join tbl_contacts co on t.contacts_id=co.id
+        join tbl_user u2 on t.create_by=u2.id
+        left join tbl_user u3 on t.edit_by=u3.id
+    where t.id=#{id}
+  </select>
+
+  <select id="selectCountOfTranGroupByStage" resultType="com.lsp.crm.workbench.pojo.FunnelVO">
+  select count(*) as value,dv.value as name from tbl_tran t join tbl_dic_value dv on t.stage=dv.id group by t.stage
+  </select>
+</mapper>
