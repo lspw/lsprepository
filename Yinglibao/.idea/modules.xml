@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Yinglibao.iml" filepath="$PROJECT_DIR$/Yinglibao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micr-dataservice/micr-dataservice.iml" filepath="$PROJECT_DIR$/micr-dataservice/micr-dataservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micr-pay/micr-pay.iml" filepath="$PROJECT_DIR$/micr-pay/micr-pay.iml" />
+    </modules>
+  </component>
+</project>

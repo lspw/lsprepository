@@ -1,0 +1,36 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/ready01-fastjson/pom.xml" />
+        <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/ready02-httpclient/pom.xml" />
+        <option value="$PROJECT_DIR$/ready03-swagger/pom.xml" />
+        <option value="$PROJECT_DIR$/ready03-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-dataservice/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-api/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-dateservice/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-web/pom.xml" />
+        <option value="$PROJECT_DIR$/axios/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-task/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-pay/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-dateservice/pom.xml" />
+        <option value="$PROJECT_DIR$/micr-parent/micr-common/pom.xml" />
+        <option value="$PROJECT_DIR$/ready02-httpclient/pom.xml" />
+        <option value="$PROJECT_DIR$/ready03-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/ready03-swagger/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

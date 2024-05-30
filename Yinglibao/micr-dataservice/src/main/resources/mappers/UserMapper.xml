@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsp.dataservice.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.lsp.ylb.api.pojo.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="header_image" jdbcType="VARCHAR" property="headerImage" />
+  </resultMap>
+  <resultMap id="UserAccountMap" type="com.lsp.ylb.api.model.UserAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="header_image" jdbcType="VARCHAR" property="headerImage" />
+    <result column="available_money" jdbcType="DECIMAL" property="availableMoney" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, phone, login_password, name, id_card, add_time, last_login_time, header_image
+  </sql>
+  <select id="selectByExample" parameterType="com.lsp.ylb.api.pojo.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from u_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from u_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsp.ylb.api.pojo.UserExample">
+    delete from u_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsp.ylb.api.pojo.User">
+    insert into u_user (id, phone, login_password, 
+      name, id_card, add_time, 
+      last_login_time, header_image)
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{headerImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsp.ylb.api.pojo.User">
+    insert into u_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="loginPassword != null">
+        login_password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="headerImage != null">
+        header_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headerImage != null">
+        #{headerImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsp.ylb.api.pojo.UserExample" resultType="java.lang.Long">
+    select count(*) from u_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update u_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPassword != null">
+        login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null">
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginTime != null">
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.headerImage != null">
+        header_image = #{record.headerImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update u_user
+    set id = #{record.id,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      header_image = #{record.headerImage,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsp.ylb.api.pojo.User">
+    update u_user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headerImage != null">
+        header_image = #{headerImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsp.ylb.api.pojo.User">
+    update u_user
+    set phone = #{phone,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      header_image = #{headerImage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCountUser" resultType="java.lang.Integer">
+    select count(id) from u_user
+  </select>
+
+  <select id="selectUserByPhone" resultMap="BaseResultMap">
+    select
+        <include refid="Base_Column_List"></include>
+    from u_user
+    where phone=#{phone}
+
+  </select>
+
+  <insert id="insertReturnPrimary" >
+    insert into u_user(phone,login_password,add_time)
+    values (#{phone},#{loginPassword},#{addTime})
+
+    <selectKey  keyColumn="newId" keyProperty="id" resultType="int" order="AFTER">
+      select LAST_INSERT_ID() as newId
+    </selectKey>
+  </insert>
+
+  <select id="selectLoginByPhoneAndPwd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from u_user
+    where phone=#{phone} and login_password=#{loginPassword}
+  </select>
+  <update id="updateRealName">
+    update  u_user set  name=#{name} , id_card=#{idCard} where phone=#{phone}
+  </update>
+
+  <!--查询用用户资金和信息-->
+  <select id="selectUserAccount" resultMap="UserAccountMap">
+    select
+        u.*,
+        a.available_money
+    from
+      u_user u
+    join
+      u_finance_account a
+    on u.id=a.uid
+    where
+        uid=#{uid}
+  </select>
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from u_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>
